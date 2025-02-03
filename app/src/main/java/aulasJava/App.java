@@ -3,12 +3,27 @@
  */
 package aulasJava;
 
+import java.util.ArrayList;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        ArrayList<Integer> arr = new ArrayList<>();
+		
+	arr.add(2029);
+	
+	arr.remove(0);
+	
+	arr.get(0);
+	
+	arr.set(0,1);
+	arr.clear();
+	arr.size();
+        arr.isEmpty();
+	arr.contains(1);
+	System.out.println(arr);
     }
 }
