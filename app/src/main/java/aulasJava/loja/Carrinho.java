@@ -5,7 +5,6 @@
 package aulasJava.loja;
 
 import aulasJava.loja.produtos.Produto;
-import java.awt.List;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +16,12 @@ public class Carrinho {
 	
 	public Carrinho() {
 		carrinho = new ArrayList<>();
+	}
+	
+	public void listarProdutos() {
+		for (Produto produto: carrinho) {
+			System.out.println("Id: " + produto.getID() + produto.getNome() +  " " + produto.getCategoria());
+		}
 	}
 	
 	public void adicionarProduto(Produto produto) {

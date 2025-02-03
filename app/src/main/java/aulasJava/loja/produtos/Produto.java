@@ -9,8 +9,8 @@ package aulasJava.loja.produtos;
  * @author ADRIANFEIJOFAGUNDES
  */
 public interface Produto {
-	@Override
-	String toString();
 	Produto clone();
 	int getID();
+	String getNome();
+	String getCategoria();
 }
