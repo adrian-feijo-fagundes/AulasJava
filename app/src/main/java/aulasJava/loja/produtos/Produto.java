@@ -8,7 +8,7 @@ package aulasJava.loja.produtos;
  *
  * @author ADRIANFEIJOFAGUNDES
  */
-abstract public class Produto {
+abstract public class Produto implements Iproduto {
 	
 	private int id;
 	private String nome;

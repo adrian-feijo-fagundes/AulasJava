@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Carrinho {
 	private final ArrayList<Produto> carrinho;
 	private double valorCompra;
+	private double valorImpostos;
+	private double valorLucro;
 	public Carrinho() {
 		carrinho = new ArrayList<>();
 	}
@@ -50,7 +52,11 @@ public class Carrinho {
 	}
 
 	private double calcularLucroTotal() {
+		this.valorImpostos = 0;
 		
+		for (Produto produto : carrinho) {
+			valorImpostos = produto.calcularImposto();
+		}
 		
 		return 0;
 	}
@@ -62,4 +68,14 @@ public class Carrinho {
 	private double calcularValorCompra() {
 		return 0;
 	}
+
+	public double getValorImpostos() {
+		return valorImpostos;
+	}
+
+	public double getValorLucro() {
+		return valorLucro;
+	}
+	
+	
 }
