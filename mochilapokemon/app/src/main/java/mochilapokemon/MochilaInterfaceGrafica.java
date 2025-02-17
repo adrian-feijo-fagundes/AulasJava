@@ -35,17 +35,29 @@ public class MochilaInterfaceGrafica extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
+        backpackLabel = new javax.swing.JLabel();
+        computerLabel = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listBackpack = new javax.swing.JList<>();
-        backpackLabel = new javax.swing.JLabel();
-        computerLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listComputer = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         mainPanel.setBackground(new java.awt.Color(102, 255, 102));
+
+        backpackLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        backpackLabel.setForeground(new java.awt.Color(0, 0, 0));
+        backpackLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backpackLabel.setText("Mochila");
+
+        computerLabel.setBackground(new java.awt.Color(0, 0, 0));
+        computerLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        computerLabel.setForeground(new java.awt.Color(0, 0, 0));
+        computerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        computerLabel.setText("Computador");
 
         addButton.setText("Adicionar a mochila");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,38 +75,31 @@ public class MochilaInterfaceGrafica extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listBackpack);
 
-        backpackLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        backpackLabel.setForeground(new java.awt.Color(0, 0, 0));
-        backpackLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        backpackLabel.setText("Mochila");
-
-        computerLabel.setBackground(new java.awt.Color(0, 0, 0));
-        computerLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        computerLabel.setForeground(new java.awt.Color(0, 0, 0));
-        computerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        computerLabel.setText("Computador");
-
-        jLabel1.setText("jLabel1");
+        listComputer.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listComputer);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(computerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(computerLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backpackLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(removeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                        .addGap(0, 27, Short.MAX_VALUE)
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(removeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -105,9 +110,9 @@ public class MochilaInterfaceGrafica extends javax.swing.JFrame {
                     .addComponent(backpackLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(computerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,9 +184,10 @@ public class MochilaInterfaceGrafica extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JLabel backpackLabel;
     private javax.swing.JLabel computerLabel;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listBackpack;
+    private javax.swing.JList<String> listComputer;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
