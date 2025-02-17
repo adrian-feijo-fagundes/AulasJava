@@ -1,0 +1,18 @@
+repositório 
+
+Exemplo evento botão
+
+adicionar
+
+String novoItem = txtItem.getText().trim()
+if( !novoItem.isEmpty()) {
+	modeloLista.addElement(novoItem)
+	txtItem.setText("") // Limpa o campo
+}
+
+remover
+
+if index = listaItens.getSelectedIndex();
+if (index != -1) {
+	modeloLista.remove(index)
+}
