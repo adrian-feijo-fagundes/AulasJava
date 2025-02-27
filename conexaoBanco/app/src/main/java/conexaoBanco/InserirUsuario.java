@@ -11,7 +11,7 @@ public class InserirUsuario {
 			pstmt.setString(1, nome);
 			pstmt.setString(2, email);
 			
-			pstmt.executeUpdate(sql);
+			pstmt.executeUpdate();
 			
 			System.out.println("Usuário Inserido com sucesso");
 		} catch (Exception e) {

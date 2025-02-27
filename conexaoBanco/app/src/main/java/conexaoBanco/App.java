@@ -14,5 +14,10 @@ public class App {
 		
 		
 	CriarTabela.criarTabelaUsuarios(conexao);
+	
+	AtualizarUsuario.atualizarUsuario(conexao,2, "Pedro", "pedro@gmail.com");
+	AtualizarUsuario.atualizarUsuario(conexao,3, "Matheus", "matheus@gmail.com");
+	DeletarUsuario.deletarUsuario(conexao, 1);
+	System.out.println(ListarUsuarios.listarUsuarios(conexao));
     }
 }
