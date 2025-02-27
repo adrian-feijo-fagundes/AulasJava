@@ -4,6 +4,8 @@
  */
 package com.mycompany.projetologin;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ADRIANFEIJOFAGUNDES
@@ -101,7 +103,9 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+		String msg = username.getText() + " Foi Logado com a senha: " + password.getPassword();
+		
+		JOptionPane.showMessageDialog(this, msg);
     }//GEN-LAST:event_loginBtnActionPerformed
 
 	/**

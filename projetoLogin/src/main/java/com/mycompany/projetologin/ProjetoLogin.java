@@ -4,6 +4,10 @@
 
 package com.mycompany.projetologin;
 
+import com.mycompany.projetologin.database.ConnectionSQLite;
+
+import java.sql.Connection;
+
 /**
  *
  * @author ADRIANFEIJOFAGUNDES
@@ -11,6 +15,8 @@ package com.mycompany.projetologin;
 public class ProjetoLogin {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ConnectionSQLite conSQLite = new ConnectionSQLite();
+
+        Connection connection = conSQLite.connect();
     }
 }
