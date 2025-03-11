@@ -1,3 +1,0 @@
-- se o usuario existir no banco de dados deve logar com sucesso caso a senha seja correspondente
-- se não encontrar o usuario deve exibir mensagem para se registrar
-- 
