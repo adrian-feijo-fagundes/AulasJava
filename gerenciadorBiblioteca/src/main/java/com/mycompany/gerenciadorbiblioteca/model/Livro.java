@@ -11,8 +11,7 @@ public class Livro {
     private int anoPublicacao;
 
     // Construtor
-    public Livro(int id, String titulo, String autor, int anoPublicacao) {
-        this.id = id;
+    public Livro(String titulo, String autor, int anoPublicacao) {
         this.titulo = titulo;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
