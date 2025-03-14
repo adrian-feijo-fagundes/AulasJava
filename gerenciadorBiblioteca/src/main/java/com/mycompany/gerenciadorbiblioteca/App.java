@@ -4,6 +4,11 @@
 
 package com.mycompany.gerenciadorbiblioteca;
 
+import com.mycompany.gerenciadorbiblioteca.model.DatabaseConnection;
+import com.mycompany.gerenciadorbiblioteca.model.DatabaseTableInitializer;
+import com.mycompany.gerenciadorbiblioteca.view.FmtLivro;
+import java.sql.Connection;
+
 /**
  *
  * @author ADRIANFEIJOFAGUNDES
@@ -11,6 +16,11 @@ package com.mycompany.gerenciadorbiblioteca;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+	DatabaseConnection dbc = new DatabaseConnection();
+	Connection conn = dbc.connect();
+	DatabaseTableInitializer.createUsers(conn);
+	new FmtLivro().setVisible(true);
+
     }
 }

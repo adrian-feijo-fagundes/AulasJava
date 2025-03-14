@@ -17,7 +17,7 @@ public class LivroDAO {
     }
 
     public void adicionarLivro(Livro livro)  {
-        String sql = "INSERT INTO livros (titulo, autor, anoPublicacao) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO livros (titulo, autor, ano) VALUES (?, ?, ?)";
         try(PreparedStatement stmt = conexao.prepareStatement(sql)) {
 		stmt.setString(1, livro.getTitulo());
 		stmt.setString(2, livro.getAutor());

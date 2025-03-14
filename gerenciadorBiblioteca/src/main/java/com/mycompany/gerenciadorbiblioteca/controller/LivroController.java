@@ -6,14 +6,14 @@ package com.mycompany.gerenciadorbiblioteca.controller;
 
 import com.mycompany.gerenciadorbiblioteca.model.Livro;
 import com.mycompany.gerenciadorbiblioteca.model.LivroDAO;
-import java.sql.SQLException;
+
 
 /**
  *
  * @author ADRIANFEIJOFAGUNDES
  */
 public class LivroController {
-	private LivroDAO livroDAO;
+	private final LivroDAO livroDAO;
 	
 	public LivroController() {
 		this.livroDAO = new LivroDAO();
