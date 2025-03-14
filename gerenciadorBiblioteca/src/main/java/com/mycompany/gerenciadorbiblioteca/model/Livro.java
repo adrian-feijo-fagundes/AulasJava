@@ -49,4 +49,9 @@ public class Livro {
     public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
+	
+   @Override
+   public String toString() {
+	   return this.getId() + " | " + this.getTitulo() + " | " + this.getAutor() + " | " + this.getAnoPublicacao();
+   }
 }

@@ -30,7 +30,9 @@ public class LivroDAO {
 	}
     }
 
-    public void listarLivros() {}
+    public void listarLivros() {
+	String sql = "SELECT * FROM livros"
+    }
     public void deletarLivro(int id) {
 
     }

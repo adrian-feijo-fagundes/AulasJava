@@ -6,6 +6,8 @@ package com.mycompany.gerenciadorbiblioteca.controller;
 
 import com.mycompany.gerenciadorbiblioteca.model.Livro;
 import com.mycompany.gerenciadorbiblioteca.model.LivroDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,5 +30,9 @@ public class LivroController {
 		} catch (NumberFormatException e) {
 			return "Erro: " + e.getMessage();
 		}
+	}
+	
+	public List<String> listarLivros() {
+		return new ArrayList<>();
 	}
 }
