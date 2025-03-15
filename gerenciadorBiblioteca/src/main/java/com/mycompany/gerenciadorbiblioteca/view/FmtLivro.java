@@ -5,7 +5,10 @@
 package com.mycompany.gerenciadorbiblioteca.view;
 
 import com.mycompany.gerenciadorbiblioteca.controller.LivroController;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -21,6 +24,7 @@ public class FmtLivro extends javax.swing.JFrame {
 	public FmtLivro() {
 		initComponents();
 		livroController = new LivroController();
+		atualizarLista();
 	}
 
 	/**
@@ -36,12 +40,13 @@ public class FmtLivro extends javax.swing.JFrame {
         autorField = new javax.swing.JTextField();
         anoField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
-        listButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaLivros = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        deleteButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,8 +57,6 @@ public class FmtLivro extends javax.swing.JFrame {
             }
         });
 
-        listButton.setText("Listar");
-
         jScrollPane1.setViewportView(listaLivros);
 
         jLabel1.setText("Titulo");
@@ -62,25 +65,44 @@ public class FmtLivro extends javax.swing.JFrame {
 
         jLabel3.setText("Ano");
 
+        deleteButton.setText("Deletar");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        updateButton.setText("Atualizar");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(addButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                        .addComponent(tituloField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(autorField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(anoField, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(listButton, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                    .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(anoField)
+                    .addComponent(autorField)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tituloField))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -88,26 +110,26 @@ public class FmtLivro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1))
+                        .addContainerGap(50, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tituloField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(autorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(anoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(anoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
-                    .addComponent(listButton))
+                    .addComponent(deleteButton)
+                    .addComponent(updateButton))
                 .addGap(27, 27, 27))
         );
 
@@ -125,15 +147,56 @@ public class FmtLivro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void atualizarLista() {
+	DefaultListModel<String> model =  new DefaultListModel<>();
+	ArrayList<String> livros = livroController.listarLivros(); 
+	model.addAll(livros);
+	listaLivros.setModel(model);	
+    }
+	
+   private void limparCampos() {
+   	tituloField.setText("");
+	autorField.setText("");
+	anoField.setText("");
+   }
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-		String titulo = tituloField.getText();
-		String autor = autorField.getText();
-		String ano = anoField.getText();
+	String titulo = tituloField.getText();
+	String autor = autorField.getText();
+	String ano = anoField.getText();
 
-		String mensagem = livroController.adicionarLivros(titulo, autor, ano);
+	String mensagem = livroController.adicionarLivros(titulo, autor, ano);
 
-		JOptionPane.showMessageDialog(null, mensagem);
+	JOptionPane.showMessageDialog(null, mensagem);
+	atualizarLista();
+	limparCampos();
     }//GEN-LAST:event_addButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+	if (listaLivros.getSelectedIndex() == -1) {
+		JOptionPane.showMessageDialog(null, "Nenhum livro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
+	} else {
+		String informacoesLivro = listaLivros.getSelectedValue();
+		String message = livroController.deletarLivro(informacoesLivro);
+		atualizarLista();
+		JOptionPane.showMessageDialog(null, message);
+	}
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+       	String titulo = tituloField.getText();
+	String autor = autorField.getText();
+	String ano = anoField.getText();
+		
+	if (listaLivros.getSelectedIndex() == -1) {
+		JOptionPane.showMessageDialog(null, "Nenhum livro selecionado", "Aviso", JOptionPane.WARNING_MESSAGE);
+	} else {
+		String informacoesLivro = listaLivros.getSelectedValue();
+		String message = livroController.atualizarLivro(informacoesLivro, titulo, autor, ano);
+		JOptionPane.showMessageDialog(null, message);
+	}
+	atualizarLista();
+	limparCampos();
+    }//GEN-LAST:event_updateButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -144,13 +207,14 @@ public class FmtLivro extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JTextField anoField;
     private javax.swing.JTextField autorField;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton listButton;
     private javax.swing.JList<String> listaLivros;
     private javax.swing.JTextField tituloField;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

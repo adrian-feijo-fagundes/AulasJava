@@ -21,6 +21,11 @@ public class LivroController {
 		this.livroDAO = new LivroDAO();
 	}
 	
+	private int getLivroId(String livro) throws NumberFormatException{
+		String[] informacoes = livro.split(" ");
+		int id = Integer.parseInt(informacoes[0]);
+		return id;		
+	}
 	public String adicionarLivros(String titulo, String autor, String anoTexto)  {
 		try {
 			int ano = Integer.parseInt(anoTexto);
@@ -32,7 +37,35 @@ public class LivroController {
 		}
 	}
 	
-	public List<String> listarLivros() {
-		return new ArrayList<>();
+	public ArrayList<String> listarLivros() {
+		ArrayList<Livro> livros = livroDAO.listarLivros();
+		ArrayList<String> livrosInformacoes = new ArrayList<>();
+		
+		for (Livro livro : livros) {
+			livrosInformacoes.add(livro.toString());
+		}
+		return livrosInformacoes;
+	}
+	
+	public String deletarLivro(String livroInfo) {
+		try {
+			int id = getLivroId(livroInfo);	
+			return livroDAO.deletarLivro(id);
+		} catch (NumberFormatException e) {
+			return "Erro: " + e.getMessage();
+		}
+	}
+	
+	public String atualizarLivro(String livroInfo, String titulo, String autor, String anoTexto) {
+		try {
+			int id = getLivroId(livroInfo);	
+			int ano = Integer.parseInt(anoTexto);
+			Livro livro = new Livro(titulo, autor, ano);
+			livro.setId(id);
+			livroDAO.atualizarLivro(livro);
+			return "Livro atualizado com sucesso!.";
+		} catch (NumberFormatException e) {
+			return "Erro: " + e.getMessage();
+		}
 	}
 }
