@@ -5,8 +5,11 @@
 package com.mycompany.leitordetexto;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -15,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author ADRIANFEIJOFAGUNDES
  */
 public class Leitor extends javax.swing.JFrame {
-
+	private String path;
 	/**
 	 * Creates new form Leitor
 	 */
@@ -58,6 +61,7 @@ public class Leitor extends javax.swing.JFrame {
 
         menuArquivo.setText("Arquivos");
 
+        arquivoAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         arquivoAbrir.setText("Abrir");
         arquivoAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +70,7 @@ public class Leitor extends javax.swing.JFrame {
         });
         menuArquivo.add(arquivoAbrir);
 
+        arquivoSalvar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         arquivoSalvar.setText("Salvar");
         arquivoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,16 +99,32 @@ public class Leitor extends javax.swing.JFrame {
 
     private void arquivoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoSalvarActionPerformed
         // TODO add your handling code here:
+	JFileChooser fileChooser = new JFileChooser(path);
+	fileChooser.setSelectedFile(new File(this.getTitle()));
+	int resultado = fileChooser.showSaveDialog(null);
+	
+	if (resultado == JFileChooser.APPROVE_OPTION) {
+		File arquivo = fileChooser.getSelectedFile();
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo))) {
+			bw.write(areaTexto.getText());
+			JOptionPane.showMessageDialog(null, "Arquivo salvo com sucesso!");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao salvar o arquivo", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+		
     }//GEN-LAST:event_arquivoSalvarActionPerformed
 
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser(path);
 		
 	int resultado = fileChooser.showOpenDialog(null);
 	
 	if (resultado == JFileChooser.APPROVE_OPTION) {
 		File arquivo = fileChooser.getSelectedFile();
-
+		this.setTitle(arquivo.getName());
+		path =  arquivo.getAbsolutePath();
 		try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
 			String linha, conteudo = "";
 			
