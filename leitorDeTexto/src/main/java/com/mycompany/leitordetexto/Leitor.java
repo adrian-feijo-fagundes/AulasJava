@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -100,6 +102,7 @@ public class Leitor extends javax.swing.JFrame {
     private void arquivoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoSalvarActionPerformed
         // TODO add your handling code here:
 	JFileChooser fileChooser = new JFileChooser(path);
+	fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos de Texto (*.txt)", "txt"));	
 	fileChooser.setSelectedFile(new File(this.getTitle()));
 	int resultado = fileChooser.showSaveDialog(null);
 	
@@ -117,8 +120,9 @@ public class Leitor extends javax.swing.JFrame {
     }//GEN-LAST:event_arquivoSalvarActionPerformed
 
     private void arquivoAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arquivoAbrirActionPerformed
-        JFileChooser fileChooser = new JFileChooser(path);
-		
+
+	JFileChooser fileChooser = new JFileChooser(path);
+	fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos de Texto (*.txt)", "txt"));	
 	int resultado = fileChooser.showOpenDialog(null);
 	
 	if (resultado == JFileChooser.APPROVE_OPTION) {
