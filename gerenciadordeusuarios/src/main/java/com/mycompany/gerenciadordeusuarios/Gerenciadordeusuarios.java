@@ -4,6 +4,8 @@
 
 package com.mycompany.gerenciadordeusuarios;
 
+import com.mycompany.gerenciadordeusuarios.database.DatabaseConnection;
+import java.sql.Connection;
 /**
  *
  * @author ADRIANFEIJOFAGUNDES
@@ -11,6 +13,7 @@ package com.mycompany.gerenciadordeusuarios;
 public class Gerenciadordeusuarios {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+       Connection conn = DatabaseConnection.getConnection();
+
     }
 }

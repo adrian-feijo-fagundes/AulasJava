@@ -8,6 +8,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -30,6 +31,19 @@ public class DatabaseConnection {
 			return connection;
 		} catch (SQLException e) {
 			throw new RuntimeException("Erro na conexão com o banco de dados: ", e);
+		}
+	}
+	
+	public static void createTableUsers() {
+		String sql = "CREATE TABLE IF NOT EXISTS users (" + 
+				"id INT AUTO_INCREMENT PRIMARY KEY" +
+				"name VARCHAR(255) NOT NULL UNIQUE" +
+				"passworkd VARCHAR(255) NOT NULL";
+		
+		try (Statement stmt = connection.createStatement()) {
+			stmt.execute(sql);
+		} catch (SQLException e ) {
+			throw new RuntimeException("Erro ao criar tabela users: ", e);
 		}
 	}
 }
