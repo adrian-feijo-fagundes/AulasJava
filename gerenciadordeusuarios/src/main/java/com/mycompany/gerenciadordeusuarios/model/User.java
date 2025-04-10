@@ -10,11 +10,11 @@ package com.mycompany.gerenciadordeusuarios.model;
  */
 public class User {
 	private int id;
-	private String email;
+	private String name;
 	private String password;
 
-	public User(String email, String password) {
-		this.email = email;
+	public User(String name, String password) {
+		this.name = name;
 		this.password = password;
 	}
 
@@ -26,12 +26,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getName() {
+		return name;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {

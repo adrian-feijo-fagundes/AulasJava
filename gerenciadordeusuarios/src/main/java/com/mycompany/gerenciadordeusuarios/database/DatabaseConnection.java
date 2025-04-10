@@ -27,6 +27,7 @@ public class DatabaseConnection {
 		try {
 			if (connection == null || connection.isClosed()) {
 				connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+				createTableUsers();
 			}
 			return connection;
 		} catch (SQLException e) {
@@ -36,9 +37,9 @@ public class DatabaseConnection {
 	
 	public static void createTableUsers() {
 		String sql = "CREATE TABLE IF NOT EXISTS users (" + 
-				"id INT AUTO_INCREMENT PRIMARY KEY" +
-				"name VARCHAR(255) NOT NULL UNIQUE" +
-				"passworkd VARCHAR(255) NOT NULL";
+				"id INT AUTO_INCREMENT PRIMARY KEY," +
+				"name VARCHAR(255) NOT NULL UNIQUE," +
+				"password VARCHAR(255) NOT NULL);";
 		
 		try (Statement stmt = connection.createStatement()) {
 			stmt.execute(sql);
