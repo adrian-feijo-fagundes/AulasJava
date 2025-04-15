@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Defina sua senha de root
+      MYSQL_DATABASE: exemplo_db         # Nome do banco de dados inicial
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-container
+    environment:
+      PMA_HOST: mysql            # Nome do serviço MySQL (container)
+      MYSQL_ROOT_PASSWORD: root  # A senha de root configurada acima
+    ports:
+      - "8080:80"                    # Acesse o phpMyAdmin em localhost:8080
+    networks:
+      - mysql-network
+
+networks:
+  mysql-network:
+    driver: bridge
